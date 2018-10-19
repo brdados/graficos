@@ -1,4 +1,4 @@
-rm(list=ls())
+# rm(list=ls())
 #devtools::install_github("antrologos/harmonizePNAD")
 
 library(data.table)
