@@ -53,7 +53,11 @@ p <- bd %>%
   annotate("text", x = 2012.2, y = 2.6, label = "bold(Dilma)", parse = TRUE)
 
 # Exportação
-ggsave(plot = p, "defasagem_escolar.png", type = "cairo-png")
+ggsave("defasagem_escolar.png", p,
+       width = 10, 
+       height = 7, 
+       units = "in", 
+       type = "cairo-png")
   
   
 

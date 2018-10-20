@@ -31,26 +31,24 @@ p <- bd %>%
                    colour = "#8c510a", 
                    alpha = 0.9, 
                    linetype = "dashed") +
-        geom_vline(xintercept = 1995,
+        geom_vline(xintercept = 1990,
                    size = 0.98, 
                    colour = "#8c510a", 
                    alpha = 0.9, 
                    linetype = "dashed") +
-        geom_vline(xintercept = 2003, 
+        geom_vline(xintercept = 2007, 
                    size = 0.98, 
                    colour = "#8c510a", 
                    alpha = 0.9, 
                    linetype = "dashed") +
-        geom_vline(xintercept = 2011, 
-                   size = 0.98, 
-                   colour = "#8c510a", 
-                   alpha = 0.9, 
-                   linetype = "dashed") +
-        annotate("text", x = 1990.3, y = 2.6, label = "bold(Constituição)", parse = TRUE) +
-        annotate("text", x = 1996, y = 2.6, label = "bold(FHC)", parse = TRUE) +
-        annotate("text", x = 2004, y = 2.6, label = "bold(Lula)", parse = TRUE) +
-        annotate("text", x = 2012.2, y = 2.6, label = "bold(Dilma)", parse = TRUE)
-
+        annotate("text", x = 1985.9, y = 97, label = "Constituição", parse = FALSE) +
+        annotate("text", x = 1991.8, y = 97, label = "Lei do SUS", parse = FALSE) +
+        annotate("text", x = 2010.3, y = 92, label = "Diretrizes Nacionais \npara o Saneamento \nBásico", parse = FALSE)
+        
 # Exportação
-ggsave(plot = p, "agua_potavel.png", type = "cairo-png")
+ggsave("agua_potavel.png", p, 
+       width = 10, 
+       height = 7, 
+       units = "in", 
+       type = "cairo-png")
 

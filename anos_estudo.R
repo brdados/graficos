@@ -85,5 +85,14 @@ p_reg <- bd %>%
         annotate("text", x = 2012.2, y = 1, label = "bold(Dilma)", parse = TRUE)
 
 # Exportação
-ggsave(plot = p_br, "anos_estudo_br.png", type = "cairo-png")
-ggsave(plot = p_reg, "anos_estudo_reg.png", type = "cairo-png")
+ggsave("anos_estudo_br.png", p_br, 
+       width = 10, 
+       height = 7, 
+       units = "in", 
+       type = "cairo-png")
+
+ggsave("anos_estudo_reg.png", p_reg, 
+       width = 10, 
+       height = 7, 
+       units = "in", 
+       type = "cairo-png")
