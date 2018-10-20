@@ -20,7 +20,7 @@ p <- bd %>%
         ggplot(aes(x = ano, y = cob_esgoto)) +
         geom_line(size = .98, alpha = 0.9) +
         scale_x_continuous(breaks = seq(1981, 2014, by = 3)) +
-        scale_y_continuous(breaks = seq(10, 90, by = 20)) +
+        scale_y_continuous(breaks = seq(20, 100, by = 20), limits = c(0, 100)) +
         labs(color = NULL, x = NULL, y = "Presença de esgoto (%)",
              caption = "\nFonte: Ipeadata (goo.gl/Awat5Z)",
              title = "Cobertura de Esgoto",
