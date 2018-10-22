@@ -51,17 +51,18 @@ for(i in 96:99){
   dt$Feminino[dt$Ano == id$ANO[1]] <- id$total[2]
 }
 
+dt$taxa <- (dt$a1519 / dt$Feminino) * 1000
 
 # grafico
-ggplot(dt, aes(Ano, taxa)) + geom_line() + 
-  labs(title = "Taxa de Gravidez na Adolescência entre 15 a 19 anos (a cada 1.000)",
-                                                 caption = "Fonte: DATASUS", y = "Taxa") +
+ggplot(dt, aes(Ano, taxa)) + geom_line(lwd = 1.2, alpha = .5) + 
+  labs(title = "Taxa de Gravidez na Adolescência entre 15 a 19 anos (a cada 1.000 nascidos vivos)",
+       caption = "Fonte: SINASC/DataSUS/MS", y = "Taxa") +
   scale_x_continuous(breaks = 1996:2016) + 
-  scale_y_continuous(breaks = c(0, 25, 50, 75, 100, 125, 150, 175), limits = c(0, 200)) +
-  geom_vline(xintercept = 1998, linetype = 3) +
-  annotate("text", label = "Orçamento próprio para o PSF", x = 1999.4, y = 170, size = 3) +
-  geom_vline(xintercept = 1999, linetype = 3) +
-  annotate("text", label = "1.º Pacto da Atenção Básica", x = 2000.7, y = 90, size = 3) +
+  scale_y_continuous(breaks = c(0, 15, 30, 45, 60, 75, 90), limits = c(0, 90)) +
+  geom_vline(xintercept = 1999, linetype = 3, size=0.98) +
+  geom_label(aes(label = "1.º Pacto da Atenção Básica \n (Saúde da Família)", x = 2000, y = 90), 
+             fill = "white", color = "black", label.r = unit(0, "lines"), label.size = 0.1) +
+  # geom_vline(xintercept = 2005, linetype = 3, size=0.98) +
   tema_brdados()
- 
-ggsave("n_nascimento_adolescencia.png", width = 11.49, height = 7.44)
+
+ggsave("grafico_gravidez_adolescencia.png", width = 11.49, height = 7.44)
