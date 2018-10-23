@@ -22,7 +22,7 @@ for(i in 1996:2016){
   print(i)
 }
 
-
+#dados <- dados[!duplicated(dados), ]
 dados <- data.table(dados)
 dados$Var1 <- as.numeric(as.character(dados$Var1))
 
@@ -48,21 +48,24 @@ for(i in 96:99){
   idade9 <- data.table(idade9)
   id <- idade9[, .(total = sum(POPULACAO[FXETARIA %in% c("1515", "1616", "1717", "1818", "1919")])),
                by = list(SEXO, ANO)]
-  dt$Feminino[dt$Ano == id$ANO[1]] <- id$total[2]
+  dt$Feminino[dt$Ano == id$ANO[1]] <- id$total[id$SEXO == 2]
 }
 
 dt$taxa <- (dt$a1519 / dt$Feminino) * 1000
 
 # grafico
-ggplot(dt, aes(Ano, taxa)) + geom_line(lwd = 1.2, alpha = .5) + 
+ggplot(dt, aes(Ano, taxa)) + geom_line(lwd = 2, alpha = .5) + 
   labs(title = "Taxa de Gravidez na Adolescência entre 15 a 19 anos (a cada 1.000 nascidos vivos)",
-       caption = "Fonte: SINASC/DataSUS/MS", y = "Taxa") +
+                                                 caption = "Fonte: SINASC/DataSUS/MS", y = "Taxa") +
   scale_x_continuous(breaks = 1996:2016) + 
   scale_y_continuous(breaks = c(0, 15, 30, 45, 60, 75, 90), limits = c(0, 90)) +
   geom_vline(xintercept = 1999, linetype = 3, size=0.98) +
-  geom_label(aes(label = "1.º Pacto da Atenção Básica \n (Saúde da Família)", x = 2000, y = 90), 
+  geom_vline(xintercept = 1997, linetype = 3, size=0.98) +
+  geom_label(aes(label = "1.º Pacto da Atenção Básica \n (Saúde da Família)", x = 1999.5, y = 60), 
              fill = "white", color = "black", label.r = unit(0, "lines"), label.size = 0.1) +
-  # geom_vline(xintercept = 2005, linetype = 3, size=0.98) +
+  geom_label(aes(label = "PCN - Inclusão da \nEducação Sexual", x = 1997, y = 45), 
+             fill = "white", color = "black", label.r = unit(0, "lines"), label.size = 0.1) +
+ # geom_vline(xintercept = 2005, linetype = 3, size=0.98) +
   tema_brdados()
-
+ 
 ggsave("grafico_gravidez_adolescencia.png", width = 11.49, height = 7.44)
