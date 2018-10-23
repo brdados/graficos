@@ -55,9 +55,10 @@ dt$taxa <- (dt$a1519 / dt$Feminino) * 1000
 
 # grafico
 ggplot(dt, aes(Ano, taxa)) + geom_line(lwd = 2, alpha = .5) + 
-  labs(title = "Taxa de Gravidez na Adolescência entre 15 a 19 anos (a cada 1.000 nascidos vivos)",
+  labs(title = "Taxa de Gravidez na Adolescência",
+       subtitle = "Cada vez menos gravidez na adolescência", y = "Nascidos vivos a cada 1.000 jovens entre 15 e 19",
                                                  caption = "Fonte: SINASC/DataSUS/MS", y = "Taxa") +
-  scale_x_continuous(breaks = 1996:2016) + 
+  scale_x_continuous(breaks = seq(1995, 2015, 5)) + 
   scale_y_continuous(breaks = c(0, 15, 30, 45, 60, 75, 90), limits = c(0, 90)) +
   geom_vline(xintercept = 1999, linetype = 3, size=0.98) +
   geom_vline(xintercept = 1997, linetype = 3, size=0.98) +
@@ -68,4 +69,5 @@ ggplot(dt, aes(Ano, taxa)) + geom_line(lwd = 2, alpha = .5) +
  # geom_vline(xintercept = 2005, linetype = 3, size=0.98) +
   tema_brdados()
  
-ggsave("grafico_gravidez_adolescencia.png", width = 11.49, height = 7.44)
+ggsave("grafico_gravidez_adolescencia.png", width = 9, height = 7)
+
